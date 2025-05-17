@@ -1,7 +1,7 @@
 CC = gcc
 CFLAGS = -Wall -O2 -I./src
 TARGET = pbl_dat_dump
-LIBS = libpbl.a
+LIBS = ./src/libpbl.a
 
 all: $(TARGET)
 
