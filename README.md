@@ -1,3 +1,19 @@
+# Compile libpbl.so
+
+```
+cd ./src
+make python
+cd ../
+make 
+```
+
+# Run 
+## Aqara M2 Hub
+TBD
+## Aqara M3 Hub
+1. Get a clone image of factory partition
+2. python3 ./aqara_property_db_editor.py -r ./p3.img
+
 
 ## Peter Graf's Free GPL Open Source Software
 

@@ -4,7 +4,7 @@
 AR=      /usr/bin/ar
 RANLIB=  /usr/bin/ar ts
 IPATH=   -I.
-CFLAGS=  -Wall -O3 ${IPATH} -DPBLTEST
+CFLAGS=  -Wall -O3 ${IPATH} -DPBLTEST -fPIC
 CC= gcc
 
 INCLIB    = 
@@ -248,3 +248,8 @@ clean:
 	rm -f ${THEEXE9} ${EXE_OBJS9}
 	rm -f isamtest/0*
 
+python: libpbl.so
+	cp libpbl.so ../
+
+libpbl.so: $(LIB_OBJS)
+	$(CC) -shared -fPIC -o libpbl.so -Wl,--whole-archive libpbl.a -Wl,--no-whole-archive

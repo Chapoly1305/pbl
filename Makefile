@@ -1,15 +1,20 @@
-CC = gcc
-CFLAGS = -Wall -O2 -I./src
-TARGET = pbl_dat_dump
-LIBS = ./src/libpbl.a
+# Makefile for Python version of pbl_dat_dump
 
-all: $(TARGET)
+.PHONY: all clean install
 
-$(TARGET): pbl_dat_dump.o
-	$(CC) $(CFLAGS) -o $(TARGET) pbl_dat_dump.o $(LIBS)
+all: check_libs
 
-pbl_dat_dump.o: pbl_dat_dump.c
-	$(CC) $(CFLAGS) -c pbl_dat_dump.c
+check_libs:
+	@echo "Checking for libpbl.so..."
+	@if [ ! -f "./src/libpbl.so" ]; then \
+		echo "Warning: libpbl.so not found in current directory. Please ensure it's available."; \
+	else \
+		echo "libpbl.so found"; \
+	fi
+
+install:
+	pip install -e .
 
 clean:
-	rm -f $(TARGET) *.o
+	rm -rf __pycache__ *.pyc *.egg-info build dist
+
