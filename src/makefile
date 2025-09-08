@@ -251,5 +251,9 @@ clean:
 python: libpbl.so
 	cp libpbl.so ../
 
-libpbl.so: $(LIB_OBJS)
+libpbl.so: $(LIB_OBJS) $(THELIB)
+ifeq ($(shell uname), Darwin)
+	$(CC) -shared -fPIC -o libpbl.so $(LIB_OBJS)
+else
 	$(CC) -shared -fPIC -o libpbl.so -Wl,--whole-archive libpbl.a -Wl,--no-whole-archive
+endif
